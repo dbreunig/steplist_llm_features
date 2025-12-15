@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "steplist-ai-features"
 version = "0.1.0"
-description = "A DSPy project"
+description = "A dspy-cli service that manages the LLM-powered functions used by StepList."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
