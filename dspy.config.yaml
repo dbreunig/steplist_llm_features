@@ -15,6 +15,13 @@ models:
       temperature: 1.0
       env: OPENAI_API_KEY
 
+    groq:gpt-oss-20b:
+      model: groq/openai/gpt-oss-20b
+      model_type: chat
+      max_tokens: 16000
+      temperature: 1.0
+      env: GROQ_API_KEY
+
 # Optional: Override the model for specific programs
-# program_models:
-#   MySpecialProgram: openai:gpt-5-nano
+program_models:
+  EmojifierPredict: groq:gpt-oss-20b
