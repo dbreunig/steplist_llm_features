@@ -1,0 +1,464 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "steplist-ai-features",
+    "description": "Automatically generated API for DSPy programs",
+    "version": "0.1.0",
+    "x-dspy-config": {
+      "default_model": null,
+      "programs_count": 3
+    },
+    "x-dspy-programs": [
+      {
+        "name": "EmojifierPredict",
+        "module_path": "steplist_ai_features.modules.emojifier_predict",
+        "is_forward_typed": true
+      },
+      {
+        "name": "ListGeneratorFromWebsiteReAct",
+        "module_path": "steplist_ai_features.modules.list_generator_from_website_react",
+        "is_forward_typed": true
+      },
+      {
+        "name": "StepGeneratorPredict",
+        "module_path": "steplist_ai_features.modules.step_generator_predict",
+        "is_forward_typed": true
+      }
+    ],
+    "x-dspy-program-models": {
+      "EmojifierPredict": "openai:gpt-5-nano",
+      "ListGeneratorFromWebsiteReAct": "openai:gpt-5-nano",
+      "StepGeneratorPredict": "openai:gpt-5-nano"
+    }
+  },
+  "paths": {
+    "/EmojifierPredict": {
+      "post": {
+        "summary": "Run Program",
+        "description": "Execute the DSPy program with given inputs.",
+        "operationId": "run_program_EmojifierPredict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmojifierPredictRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Run Program Emojifierpredict Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ListGeneratorFromWebsiteReAct": {
+      "post": {
+        "summary": "Run Program",
+        "description": "Execute the DSPy program with given inputs.",
+        "operationId": "run_program_ListGeneratorFromWebsiteReAct_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ListGeneratorFromWebsiteReActRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Run Program Listgeneratorfromwebsitereact Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/StepGeneratorPredict": {
+      "post": {
+        "summary": "Run Program",
+        "description": "Execute the DSPy program with given inputs.",
+        "operationId": "run_program_StepGeneratorPredict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StepGeneratorPredictRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Run Program Stepgeneratorpredict Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/programs": {
+      "get": {
+        "summary": "List Programs",
+        "description": "List all discovered programs and their schemas.",
+        "operationId": "list_programs_programs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metrics": {
+      "get": {
+        "summary": "List Metrics",
+        "description": "Get aggregated metrics for all programs.\n\nArgs:\n    sort_by: Sort key (name, calls, latency, cost, tokens, last_call)\n    order: Sort order (asc, desc)",
+        "operationId": "list_metrics_api_metrics_get",
+        "parameters": [
+          {
+            "name": "sort_by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "calls",
+              "title": "Sort By"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "desc",
+              "title": "Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metrics/{program_name}": {
+      "get": {
+        "summary": "Program Metrics",
+        "description": "Get detailed metrics for a specific program.",
+        "operationId": "program_metrics_api_metrics__program_name__get",
+        "parameters": [
+          {
+            "name": "program_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Program Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Index",
+        "description": "Render the index page with a list of all programs.",
+        "operationId": "index__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ui/{program_name}": {
+      "get": {
+        "summary": "Program Page",
+        "description": "Render the program detail page.",
+        "operationId": "program_page_ui__program_name__get",
+        "parameters": [
+          {
+            "name": "program_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Program Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/logs/{program_name}": {
+      "get": {
+        "summary": "Get Logs",
+        "description": "Get recent logs for a program.",
+        "operationId": "get_logs_api_logs__program_name__get",
+        "parameters": [
+          {
+            "name": "program_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Program Name"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmojifierPredictRequest": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "EmojifierPredictRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ListGeneratorFromWebsiteReActRequest": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "title": "ListGeneratorFromWebsiteReActRequest"
+      },
+      "StepGeneratorPredictRequest": {
+        "properties": {
+          "list_title": {
+            "type": "string",
+            "title": "List Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "list_title",
+          "description"
+        ],
+        "title": "StepGeneratorPredictRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
